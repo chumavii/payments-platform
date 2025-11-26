@@ -4,6 +4,10 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{827E0CD3-B72D-47B6-A68D-7590B98EB39B}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		deploy\docker-compose.yml = deploy\docker-compose.yml
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{984BB9B3-3FA3-BE33-9484-CAC21695A33C}"
 EndProject
@@ -149,5 +153,8 @@ Global
 		{82D2C339-BDF9-4C26-8F39-BD07E4C090D0} = {C8E42992-5E42-0C2B-DBFE-AA848D06431C}
 		{E1C04BF8-E3A5-4BE0-870A-DEFF8870CB61} = {C8E42992-5E42-0C2B-DBFE-AA848D06431C}
 		{DFF5C959-0BC1-4439-85FD-3327EB73BB7C} = {C8E42992-5E42-0C2B-DBFE-AA848D06431C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {C58A4F6A-7F3E-4662-940F-3C59B441BD77}
 	EndGlobalSection
 EndGlobal

@@ -13,4 +13,10 @@
     <PackageReference Include="Quartz" Version="3.15.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\BuildingBlocks\BuildingBlocks.csproj" />
+    <ProjectReference Include="..\..\Shared\Contracts\Contracts.csproj" />
+    <ProjectReference Include="..\..\Shared\Domain\Domain.csproj" />
+  </ItemGroup>
+
 </Project>
