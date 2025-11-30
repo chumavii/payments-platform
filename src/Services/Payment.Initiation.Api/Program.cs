@@ -1,7 +1,32 @@
+using MassTransit;
+using Microsoft.EntityFrameworkCore;
+using Payment.Initiation.Api.Data;
+using Payment.Initiation.Api.Endpoints;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+// Payment Initiation Service API
+builder.Services.AddDbContext<PaymentsDbContext>(options =>
+    options.UseNpgsql(builder.Configuration.GetConnectionString("Default")));
+builder.Services.AddMassTransit(x =>
+{
+    x.AddEntityFrameworkOutbox<PaymentsDbContext>(c =>
+    {
+        c.QueryTimeout = TimeSpan.FromSeconds(15);
+        c.UsePostgres();
+        c.UseBusOutbox();
+    });
+
+    x.UsingRabbitMq((context, config) =>
+    {
+        config.Host(builder.Configuration["RabbitMQ:Host"], "/", h =>
+        {
+            h.Username(builder.Configuration["RabbitMQ:Username"] ?? "guest");
+            h.Password(builder.Configuration["RabbitMQ:Password"] ?? "guest");
+        });
+    });    
+});
+
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -17,7 +42,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapGet("/", () => "OK")
-.WithName("GetWeatherForecast")
+.WithName("PaymentsApi")
 .WithOpenApi();
-
+app.MapPaymentInitiationEndpoints();
 app.Run();
