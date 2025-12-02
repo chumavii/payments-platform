@@ -15,6 +15,7 @@ builder.Services.AddMassTransit(x =>
         c.QueryTimeout = TimeSpan.FromSeconds(15);
         c.UsePostgres();
         c.UseBusOutbox();
+        c.DisableInboxCleanupService();
     });
 
     x.UsingRabbitMq((context, config) =>
@@ -40,9 +41,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
-app.MapGet("/", () => "OK")
-.WithName("PaymentsApi")
-.WithOpenApi();
 app.MapPaymentInitiationEndpoints();
 app.Run();
+
+public partial class Program { }

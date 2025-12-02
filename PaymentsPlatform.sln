@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildingBlocks", "src\Share
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "src\Shared\Domain\Domain.csproj", "{DFF5C959-0BC1-4439-85FD-3327EB73BB7C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Payment.Initiation.Tests", "tests\Payment.Initiation.Tests\Payment.Initiation.Tests.csproj", "{9E9F30F1-5FA1-4914-9630-0966C6BC6914}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -137,6 +139,18 @@ Global
 		{DFF5C959-0BC1-4439-85FD-3327EB73BB7C}.Release|x64.Build.0 = Release|Any CPU
 		{DFF5C959-0BC1-4439-85FD-3327EB73BB7C}.Release|x86.ActiveCfg = Release|Any CPU
 		{DFF5C959-0BC1-4439-85FD-3327EB73BB7C}.Release|x86.Build.0 = Release|Any CPU
+		{9E9F30F1-5FA1-4914-9630-0966C6BC6914}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E9F30F1-5FA1-4914-9630-0966C6BC6914}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E9F30F1-5FA1-4914-9630-0966C6BC6914}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9E9F30F1-5FA1-4914-9630-0966C6BC6914}.Debug|x64.Build.0 = Debug|Any CPU
+		{9E9F30F1-5FA1-4914-9630-0966C6BC6914}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9E9F30F1-5FA1-4914-9630-0966C6BC6914}.Debug|x86.Build.0 = Debug|Any CPU
+		{9E9F30F1-5FA1-4914-9630-0966C6BC6914}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E9F30F1-5FA1-4914-9630-0966C6BC6914}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E9F30F1-5FA1-4914-9630-0966C6BC6914}.Release|x64.ActiveCfg = Release|Any CPU
+		{9E9F30F1-5FA1-4914-9630-0966C6BC6914}.Release|x64.Build.0 = Release|Any CPU
+		{9E9F30F1-5FA1-4914-9630-0966C6BC6914}.Release|x86.ActiveCfg = Release|Any CPU
+		{9E9F30F1-5FA1-4914-9630-0966C6BC6914}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

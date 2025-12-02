@@ -7,13 +7,15 @@ namespace Payment.Initiation.Api.Endpoints
 {
     public static class PaymentInitiationEndpoints
     {
-        public static IEndpointRouteBuilder MapPaymentInitiationEndpoints(this IEndpointRouteBuilder app)
+        public static IEndpointRouteBuilder MapPaymentInitiationEndpoints(this IEndpointRouteBuilder routes)
         {
-            var group = app.MapGroup("/payments/initiate");
+            var group = routes.MapGroup("/api/payments")
+                .WithTags("Payments")
+                .WithOpenApi();
 
-            group.MapPost("/", async (
-                InitiatePaymentDto requestDto,
-                PaymentsDbContext db,
+            group.MapPost("/initiate", async (
+                InitiatePaymentDto requestDto, 
+                PaymentsDbContext db, 
                 IPublishEndpoint publish,
                 CancellationToken ct) =>
             {
@@ -29,13 +31,12 @@ namespace Payment.Initiation.Api.Endpoints
 
                 var evt = new PaymentRequested(payment.Id, payment.CustomerId, payment.Amount, payment.Currency);
                 await publish.Publish(evt, ct);
-
                 await db.SaveChangesAsync(ct);
 
                 return Results.Created($"/payments/{payment.Id}", payment);
             });
 
-            return app;
+            return routes;
         }
     }
 }
