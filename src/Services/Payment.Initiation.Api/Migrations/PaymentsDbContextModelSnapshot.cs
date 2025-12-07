@@ -68,7 +68,7 @@ namespace Payment.Initiation.Api.Migrations
 
                     b.HasIndex("Delivered");
 
-                    b.ToTable("InboxStates");
+                    b.ToTable("inbox_states", (string)null);
                 });
 
             modelBuilder.Entity("MassTransit.EntityFrameworkCoreIntegration.OutboxMessage", b =>
@@ -159,7 +159,7 @@ namespace Payment.Initiation.Api.Migrations
                     b.HasIndex("InboxMessageId", "InboxConsumerId", "SequenceNumber")
                         .IsUnique();
 
-                    b.ToTable("OutboxMessages");
+                    b.ToTable("outbox_messages", (string)null);
                 });
 
             modelBuilder.Entity("MassTransit.EntityFrameworkCoreIntegration.OutboxState", b =>
@@ -189,7 +189,7 @@ namespace Payment.Initiation.Api.Migrations
 
                     b.HasIndex("Created");
 
-                    b.ToTable("OutboxStates");
+                    b.ToTable("outbox_states", (string)null);
                 });
 
             modelBuilder.Entity("Payment.Initiation.Api.Domain.InitiatePayment", b =>
