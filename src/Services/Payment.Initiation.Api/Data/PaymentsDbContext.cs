@@ -21,11 +21,9 @@ namespace Payment.Initiation.Api.Data
                 .ToTable("payment_requests")
                 .HasKey(x => x.Id);
 
-            modelBuilder.AddOutboxMessageEntity();
-
-            modelBuilder.AddOutboxStateEntity();
-
-            modelBuilder.AddInboxStateEntity();
+            modelBuilder.AddOutboxMessageEntity(options => options.ToTable("outbox_messages"));
+            modelBuilder.AddOutboxStateEntity(options => options.ToTable("outbox_states"));
+            modelBuilder.AddInboxStateEntity(options => options.ToTable("inbox_states"));
         }
     }
 }
