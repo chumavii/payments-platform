@@ -20,7 +20,7 @@ builder.Services.AddMassTransit(x =>
 
     x.UsingRabbitMq((context, config) =>
     {
-        config.Host(builder.Configuration["RabbitMQ:Host"], "/", h =>
+        config.Host(builder.Configuration["RabbitMQ:Host"], h =>
         {
             h.Username(builder.Configuration["RabbitMQ:Username"] ?? "guest");
             h.Password(builder.Configuration["RabbitMQ:Password"] ?? "guest");
@@ -38,6 +38,20 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+
+    using (var scope = app.Services.CreateScope())
+    {
+        var dbContext = scope.ServiceProvider.GetRequiredService<PaymentsDbContext>();
+        var pendingMigrations = dbContext.Database.GetPendingMigrations();
+        if (pendingMigrations.Any())
+        {
+            dbContext.Database.Migrate();
+        }
+        else
+        {
+            Console.WriteLine("No pending migrations.");
+        }
+    }
 }
 
 app.UseHttpsRedirection();
