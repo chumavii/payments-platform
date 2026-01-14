@@ -3,6 +3,6 @@
 public record PaymentRequested(
     Guid PaymentId,
     Guid CustomerId,
-    decimal Amount,
+    long AmountCents,
     string Currency
 );
