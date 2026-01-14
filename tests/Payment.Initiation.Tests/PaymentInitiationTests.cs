@@ -39,7 +39,7 @@ namespace Payment.Initiation.Tests
 
             var saved = db.Payments.FirstOrDefault(p => p.CustomerId == customerId);
             saved.Should().NotBeNull();
-            saved!.Amount.Should().Be(100);
+            saved!.AmountCents.Should().Be(100);
         }
 
         [Fact]
