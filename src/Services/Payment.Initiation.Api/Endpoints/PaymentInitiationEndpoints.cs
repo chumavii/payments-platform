@@ -23,13 +23,13 @@ namespace Payment.Initiation.Api.Endpoints
                 {
                     Id = Guid.NewGuid(),
                     CustomerId = requestDto.CustomerId,
-                    Amount = requestDto.Amount,
+                    AmountCents = requestDto.Amount,
                     Currency = requestDto.Currency
                 };
 
                 await db.Payments.AddAsync(payment);
 
-                var evt = new PaymentRequested(payment.Id, payment.CustomerId, payment.Amount, payment.Currency);
+                var evt = new PaymentRequested(payment.Id, payment.CustomerId, payment.AmountCents, payment.Currency);
                 await publish.Publish(evt, ct);
                 await db.SaveChangesAsync(ct);
 
@@ -42,4 +42,4 @@ namespace Payment.Initiation.Api.Endpoints
 }
 
 // DTO for API input
-public record InitiatePaymentDto(Guid CustomerId, decimal Amount, string Currency);
+public record InitiatePaymentDto(Guid CustomerId, long Amount, string Currency);
